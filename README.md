@@ -1,1 +1,2 @@
 # laravel-event_testplay
+laravelのイベント機能のお試し

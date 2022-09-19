@@ -1,0 +1,83 @@
+# Compose fileのバージョン指定
+version: "3.9"
+services:
+# ---------------------------------
+# laravelを動かすコンテナ(LaravelMixを使うため、Nodeも一緒にインストールしているコンテナでもある)
+# ---------------------------------
+  php:
+    # Dockerfileを使って、コンテナをビルドするという指定
+    build: ./infra/php
+    
+    # ローカルのディレクトリとコンテナ上のディレクトリのリンクを設定
+    # ./src は docker-composer.yml のディレクトリ直下にある src を設定している
+    # コンテナが作成されると src ディレクトリからコンテナの /var/www/html にマウントする
+    volumes:
+      - ./src:/var/www/html
+
+    container_name: laravel_event_php
+
+  nginx:
+    image: nginx:1.20-alpine
+    container_name: laravel_event_nginx
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./src:/var/www/html
+      - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./infra/nginx:/var/log/nginx
+    depends_on:
+      - php
+    working_dir: /var/www/html
+
+# ----------------------------------
+# MySQLを動かすコンテナ
+# ----------------------------------
+  db:
+    build: ./infra/mysql
+    volumes:
+      - db-store:/var/lib/mysql
+    ports:
+      - '3306:3306'
+
+    container_name: laravel_event_DataBase
+
+
+# ----------------------------------
+# phpMyAdminを動かすコンテナ
+# ----------------------------------
+  phpmyadmin:
+    # Docker Hubからイメージをダウンロード
+    image: phpmyadmin:latest
+
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    # コンテナの名前
+    container_name: phpmyadmin_event
+
+    # コンテナと他のサービスを繋げる
+    depends_on:
+      - db
+
+    # localhost:4040 で phpmyadmin の管理画面にアクセス
+    ports:
+      - '4040:80'
+
+    # セッション情報をボリュームに設定して永続化
+    volumes:
+      - ./infra/phpmyadmin/sessions:/sessions
+  
+  # ----------------------------------
+  # mail送信テストのためのコンテナ
+  # ----------------------------------
+  mail:
+    image: mailhog/mailhog
+    container_name: mail_event
+    ports:
+      - '8025:8025'
+      - '1025:1025'
+
+volumes:
+  db-store:

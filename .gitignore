@@ -1,0 +1,2 @@
+infra/nginx/access.log
+infra/nginx/error.log
