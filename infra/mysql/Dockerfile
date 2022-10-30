@@ -6,5 +6,5 @@ ENV MYSQL_DATABASE=laravel_event_test \
     MYSQL_ROOT_PASSWORD=root \
     TZ=Asia/Tokyo
 
-COPY ./my.cnf /etc/my.cnf
+COPY ./my.cnf /etc/mysql/conf.d/my.cnf
 RUN chmod 644 /etc/my.cnf

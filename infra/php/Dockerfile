@@ -1,5 +1,5 @@
 # どんな docker イメージを利用して構築をするか
-FROM php:8.1-fpm-buster
+FROM php:8.1-fpm
 
 ENV COMPOSER_ALLOW_SUPERUSER=1 \
   COMPOSER_HOME=/composer

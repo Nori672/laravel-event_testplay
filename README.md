@@ -1,2 +1,3 @@
 # laravel-event_testplay
-laravelのイベント機能のお試し
+
+laravel「実践開発」の内容を勉強

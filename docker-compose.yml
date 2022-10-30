@@ -36,7 +36,6 @@ services:
     build: ./infra/mysql
     volumes:
       - db-store:/var/lib/mysql
-      - ./infra/mysql:/var/log/mysql
     ports:
       - '3306:3306'
 
