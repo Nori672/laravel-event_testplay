@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HelloController;
+use App\Http\Controllers\Sample\SampleController;
+use App\Http\Middleware\HelloMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +25,21 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+//正規表現でのルート設定
+// Route::get('/hello/{id}',[HelloController::class,'index'])->where('id','[0-9]+');
+
+//ルートのグループ
+Route::middleware([HelloMiddleware::class])->group(function(){
+    Route::get('/hello',[HelloController::class,'index']);
+    Route::get('/hello/other',[HelloController::class,'other']);
+});
+
+//namespaceを使ったグループ
+Route::namespace('Sample')->group(function(){
+    Route::get('/sample',[SampleController::class,'index']);
+    Route::get('/sample/other',[SampleController::class,'other']);
+});
+
+//ルートとモデルの結合
+Route::get('hello/{user}',[HelloController::class,'indexModel']);
