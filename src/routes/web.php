@@ -26,20 +26,30 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+Route::get('/hello',[HelloController::class,'index']);
+Route::get('/hello/other',[HelloController::class,'other']);
+Route::get('/sample',[SampleController::class,'index'])->name('sample');
+
 //正規表現でのルート設定
 // Route::get('/hello/{id}',[HelloController::class,'index'])->where('id','[0-9]+');
 
 //ルートのグループ
-Route::middleware([HelloMiddleware::class])->group(function(){
-    Route::get('/hello',[HelloController::class,'index']);
-    Route::get('/hello/other',[HelloController::class,'other']);
-});
+// Route::middleware([HelloMiddleware::class])->group(function(){
+//     Route::get('/hello',[HelloController::class,'index']);
+//     Route::get('/hello/other',[HelloController::class,'other']);
+// });
 
 //namespaceを使ったグループ
-Route::namespace('Sample')->group(function(){
-    Route::get('/sample',[SampleController::class,'index']);
-    Route::get('/sample/other',[SampleController::class,'other']);
-});
+// Route::namespace('Sample')->group(function(){
+//     Route::get('/sample',[SampleController::class,'index']);
+//     Route::get('/sample/other',[SampleController::class,'other']);
+// });
 
 //ルートとモデルの結合
 Route::get('hello/{user}',[HelloController::class,'indexModel']);
+
+//Storage
+Route::get('/storagetest',[HelloController::class,'indexStorage'])->name('hello');
+Route::get('/storagetest/{msg}',[HelloController::class,'otherStorage']);
+Route::get('/storageDownload',[HelloController::class,'downloadStorage'])->name('download');
+Route::post('/storageUpload',[HelloController::class,'uploadStorage'])->name('upload');

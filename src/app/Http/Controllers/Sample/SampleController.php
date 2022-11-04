@@ -8,15 +8,18 @@ use Illuminate\Http\Request;
 class SampleController extends Controller
 {
     public function index(Request $request){
+        $sample_msg = config('sample.message');
+        $sample_data = config('sample.data');
         $data = [
-            'msg' => 'サンプルコントローラーindex'
+            'msg' => $sample_msg,
+            'data' => $sample_data
         ];
         return view('hello.index',$data);
     }
 
     public function other(Request $request){
         $data = [
-            'msg' => 'サンプルコントローラーothre'
+            'msg' => 'サンプルコントローラーother'
         ];
         return view('hello.index',$data);
     }
