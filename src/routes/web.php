@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Hello2Controller;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Sample\SampleController;
 use App\Http\Middleware\HelloMiddleware;
@@ -53,3 +54,6 @@ Route::get('/storagetest',[HelloController::class,'indexStorage'])->name('hello'
 Route::get('/storagetest/{msg}',[HelloController::class,'otherStorage']);
 Route::get('/storageDownload',[HelloController::class,'downloadStorage'])->name('download');
 Route::post('/storageUpload',[HelloController::class,'uploadStorage'])->name('upload');
+
+Route::get('/hello2',[Hello2Controller::class,'index'])->name('hello2');
+Route::get('/hello2/{id}',[Hello2Controller::class,'index']);
