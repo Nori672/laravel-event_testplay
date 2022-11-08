@@ -13,11 +13,10 @@ class Hello2Controller extends Controller
     {
 
     }
-    public function index(MyServiceInterface $myService, int $id = -1){
-        FacadesMyService::setId($id);
+    public function index(Request $request){
         $data = [
-            'msg' => FacadesMyService::say(),
-            'data' => FacadesMyService::alldata()
+            'msg' => $request->hello,
+            'data' => $request->alldata
         ];
 
         return view('hello.index2',$data);

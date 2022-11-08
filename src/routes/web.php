@@ -55,5 +55,5 @@ Route::get('/storagetest/{msg}',[HelloController::class,'otherStorage']);
 Route::get('/storageDownload',[HelloController::class,'downloadStorage'])->name('download');
 Route::post('/storageUpload',[HelloController::class,'uploadStorage'])->name('upload');
 
-Route::get('/hello2',[Hello2Controller::class,'index'])->name('hello2');
+Route::get('/hello2',[Hello2Controller::class,'index'])->name('hello2')->middleware('MyMW');
 Route::get('/hello2/{id}',[Hello2Controller::class,'index']);
