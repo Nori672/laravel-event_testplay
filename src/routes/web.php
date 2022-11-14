@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Hello2Controller;
+use App\Http\Controllers\hello3Controller;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Sample\SampleController;
 use App\Http\Middleware\HelloMiddleware;
@@ -57,3 +58,6 @@ Route::post('/storageUpload',[HelloController::class,'uploadStorage'])->name('up
 
 Route::get('/hello2',[Hello2Controller::class,'index'])->name('hello2')->middleware('MyMW');
 Route::get('/hello2/{id}',[Hello2Controller::class,'index']);
+
+Route::get('/hello3',[hello3Controller::class,'index']);
+Route::get('/hello3/{id}',[hello3Controller::class,'index']);
