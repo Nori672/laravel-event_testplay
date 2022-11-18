@@ -12,9 +12,8 @@
     <p>{{$msg}}</p>
     <ol>
         @foreach($data as $item)
-        <li>{{ $item->name }}[{{ $item->email }},{{ $item->id }}]</li>
+        <li>{{ $item->name }}[{{ $item->email }},{{ $item->id }}] age: {{ $item->age }}</li>
         @endforeach
     </ol>
-    {{ $data->links() }}
 </body>
 </html>
