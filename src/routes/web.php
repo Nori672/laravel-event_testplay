@@ -3,6 +3,7 @@
 use App\Http\Controllers\Hello2Controller;
 use App\Http\Controllers\Hello3_4Contoroller;
 use App\Http\Controllers\hello3Controller;
+use App\Http\Controllers\Hello4Contoroller;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Sample\SampleController;
 use App\Http\Middleware\HelloMiddleware;
@@ -67,3 +68,8 @@ Route::get('/hello3_4',[Hello3_4Contoroller::class,'index']);
 // Route::get('/hello3_4/{id}/{name}',[Hello3_4Contoroller::class,'save']);
 Route::get('/hello3_4/json',[Hello3_4Contoroller::class,'json']);
 Route::get('/hello3_4/json/{id}',[Hello3_4Contoroller::class,'json']);
+
+// Route::get('/hello4',[Hello4Contoroller::class,'index']);
+Route::get('/hello4/{user}',[Hello4Contoroller::class,'index']);
+Route::get('/hello4',[Hello4Contoroller::class,'index2'])->name('hello4');
+Route::get('/hello4_1',[Hello4Contoroller::class,'send'])->name('post');
