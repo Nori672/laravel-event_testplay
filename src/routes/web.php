@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Hello2Controller;
+use App\Http\Controllers\Hello3_4Contoroller;
 use App\Http\Controllers\hello3Controller;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\Sample\SampleController;
@@ -61,3 +62,8 @@ Route::get('/hello2/{id}',[Hello2Controller::class,'index']);
 
 Route::get('/hello3',[hello3Controller::class,'index']);
 Route::get('/hello3/{id}',[hello3Controller::class,'index']);
+
+Route::get('/hello3_4',[Hello3_4Contoroller::class,'index']);
+// Route::get('/hello3_4/{id}/{name}',[Hello3_4Contoroller::class,'save']);
+Route::get('/hello3_4/json',[Hello3_4Contoroller::class,'json']);
+Route::get('/hello3_4/json/{id}',[Hello3_4Contoroller::class,'json']);
