@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>Hello/Index</h1>
-    <form action="{{ route('post')}}" method="get">
+    <form action="{{ route('event')}}" method="get">
         <input type="text" name="id" id="id">
         <input type="submit" value="送信">
     </form>

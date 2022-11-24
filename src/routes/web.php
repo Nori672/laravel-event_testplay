@@ -70,6 +70,7 @@ Route::get('/hello3_4/json',[Hello3_4Contoroller::class,'json']);
 Route::get('/hello3_4/json/{id}',[Hello3_4Contoroller::class,'json']);
 
 // Route::get('/hello4',[Hello4Contoroller::class,'index']);
-Route::get('/hello4/{user}',[Hello4Contoroller::class,'index']);
+// Route::get('/hello4/{user}',[Hello4Contoroller::class,'index']);
 Route::get('/hello4',[Hello4Contoroller::class,'index2'])->name('hello4');
 Route::get('/hello4_1',[Hello4Contoroller::class,'send'])->name('post');
+Route::get('/hello4/event',[Hello4Contoroller::class,'testEvent'])->name('event');

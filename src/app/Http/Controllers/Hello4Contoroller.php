@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\UserEvent;
 use App\Jobs\Myjob;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -54,5 +55,20 @@ class Hello4Contoroller extends Controller
             Storage::append('user_access_log.txt',$user->name);
         });
         return redirect()->route('hello4');
+    }
+
+    public function testEvent(Request $request)
+    {
+        $id = $request->id;
+        $user = User::find($id);
+
+        event(new UserEvent($user));
+        $data = [
+            'input'=>'',
+            'msg' => 'id = '. $id,
+            'data' => [$user],
+        ];
+
+        return view('hello.index4',$data);
     }
 }
